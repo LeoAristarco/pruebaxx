@@ -1,35 +1,34 @@
+private void setCategoriasDeEdades(){
+        List<CategoriaEdadVo> categoriasDeEdades = new ArrayList<datosPersonales>()
 
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
 
-#Main
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
 
->>mostrarDisclaimer(){
-    disclaimer = new Disclaimer()
-    disclaimer.mostrar()
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
+        categoriasDeEdades.add(new CategoriaEdadVo(nombre))
+
 }
 
-#Disclaimer
 
->>mostrar(){
+>>changeFragment(categoriaEdadVo){
+            detalleOurPortafolioFragment=new DetalleOurPortafolioFragment();
+            Bundle bundleEnvio=new Bundle();
+            bundleEnvio.putSerializable("objeto",categoriaEdadVo);
+            detalleOurPortafolioFragment.setArguments(bundleEnvio);
+        }
 
-    if(!fueAceptadoElDisclaimer()){
-        //logica de mostrar el DialogFragment
+#DetalleOurPortafolioFragment
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            categoriaEdadInfo= (CategoriaEdadVo) getArguments().getSerializable("objeto");
+        }
     }
-
-}
-
->>fueAceptadoElDisclaimer(){
-
-    SharedPreferences preferencias = getSharedPreferences("Disclaimer", MODE_PRIVATE);
-    Boolean aceptaDisclaimer = preferencias.getBoolean("aceptaDisclaimer",false)
-    return aceptaDisclaimer
-
-}
-
-
-
->>setAceptarDisclaimer(){
-    SharedPreferences.Editor editor = getSharedPreferences("Disclaimer", MODE_PRIVATE).edit();
-    editor.putBoolean("aceptaDisclaimer", true);
-    editor.commit();
-}
-
